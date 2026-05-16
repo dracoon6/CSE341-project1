@@ -29,7 +29,7 @@ const createContact = async (req, res) => {
   };
   const response = await mongodb.getDatabase().db().collection('contacts').insertOne(contact);
   if (response.acknowledged) {
-    res.status(204).send();
+    res.status(201).json(response.insertedId);
   } else {
     res.status(500).json(response.error || 'Some error occurred while creating the contact.');
   }
